@@ -21,12 +21,15 @@ public final class Logic {
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
-        for (Figure figure : figures) {
-            Cell positionFigure = figure.position();
-            if (Cell.findBy(positionFigure.getX(), positionFigure.getY()) != null) {
-                throw new OccupiedCellException();
+        for (Cell step : steps) {
+            for (Figure figure : figures) {
+                Cell positionFigure = figure.position();
+                if (step.findBy(positionFigure.getX(), positionFigure.getY()) != null) {
+                    throw new OccupiedCellException();
+                }
             }
         }
+
         return true;
     }
 
