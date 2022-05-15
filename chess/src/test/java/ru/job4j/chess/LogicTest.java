@@ -15,11 +15,7 @@ public class LogicTest {
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        try {
-            logic.move(Cell.C1, Cell.H6);
-        } catch (OccupiedCellException ex) {
-            Assert.assertEquals("Ячейка уже занята", ex.getMessage());
-        }
+        logic.move(Cell.C1, Cell.H6);
     }
 
     @Test (expected =  ImpossibleMoveException.class)
@@ -27,22 +23,14 @@ public class LogicTest {
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        try {
-            logic.move(Cell.C1, Cell.C2);
-        } catch (ImpossibleMoveException ex) {
-            ex.getMessage();
-        }
+       logic.move(Cell.C1, Cell.C2);
     }
 
-    @Test
+    @Test (expected =  FigureNotFoundException.class)
     public void moveFigureNotFoundException()
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C4));
-        try {
-            logic.move(Cell.C1, Cell.C2);
-        } catch (FigureNotFoundException ex) {
-            Assert.assertEquals("Фигуры нет в клетке", ex.getMessage());
-        }
+        logic.move(Cell.C1, Cell.C2);
     }
 }
