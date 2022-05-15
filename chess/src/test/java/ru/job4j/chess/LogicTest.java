@@ -22,7 +22,7 @@ public class LogicTest {
         }
     }
 
-    @Test
+    @Test (expected =  ImpossibleMoveException.class)
     public void moveImpossibleMove()
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
@@ -30,7 +30,7 @@ public class LogicTest {
         try {
             logic.move(Cell.C1, Cell.C2);
         } catch (ImpossibleMoveException ex) {
-            Assert.assertEquals("Could not move by diagonal from C1 to C2", ex.getMessage());
+            ex.getMessage();
         }
     }
 
